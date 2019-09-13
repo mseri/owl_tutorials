@@ -5,14 +5,14 @@ set -ex
 
 # poor man's caching; download the existing layers for ocaml/rwo
 # this will avoid having to download and install the dependencies
-docker pull mseri/owl_tutorials:latest
+docker pull mseri/mseri_owl_tutorial:latest
 
 cd $TRAVIS_BUILD_DIR
 echo Build started at `date`
-docker build --cache-from mseri/owl_tutorials:latest -t mseri/owl_tutorials .
+docker build --cache-from mseri/mseri_owl_tutorial:latest -t mseri/mseri_owl_tutorial .
 echo Build completed at `date`
 #echo Using Hub build due to a Travis build hanging
 #docker pull mseri/owl_tutorials
-docker run --name temp-container mseri/owl_tutorials /bin/true
+docker run --name temp-container mseri/mseri_owl_tutorial /bin/true
 docker cp temp-container:/home/opam/src/_build/default/static $TRAVIS_BUILD_DIR/site
 find $TRAVIS_BUILD_DIR/site

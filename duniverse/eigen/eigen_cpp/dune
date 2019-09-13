@@ -3,8 +3,9 @@
  (deps lib/libeigen.a lib/libeigen.so)
  (action
   (progn
-    (bash "cp lib/libeigen.a libeigen_cpp_stubs.a")
-    (bash "cp lib/libeigen.so dlleigen_cpp_stubs.so")
+    (bash "cp lib/libeigen.a libeigen.a")
+    (bash
+    "\n    ar -x libeigen.a\n    ocamlmklib.opt -g -o eigen_cpp_stubs *.o -lc++")
     )
   )
  )
@@ -12,7 +13,7 @@
 (library
  (name eigen_cpp)
  (public_name eigen.cpp)
- (libraries ctypes)
+ (libraries ctypes ctypes-foreign)
  (c_library_flags
   (:standard -lstdc++)
   )

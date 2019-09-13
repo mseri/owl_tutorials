@@ -136,6 +136,7 @@ val same_shape : ('a, 'b) t -> ('a, 'b) t -> bool
 (** [same_shape x y] checks whether [x] and [y] has the same shape or not. *)
 
 val kind : ('a, 'b) t -> ('a, 'b) kind
+(** [kind x] returns the type of ndarray [x]. *)
 ```
 
 Note that ``nnz`` and ``density`` need to traverse through all the elements in an ndarray, but because the implementation is in C so even for a very large ndarray the performance is still good.

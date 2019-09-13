@@ -13,7 +13,7 @@
 (library
  (name eigen_cpp)
  (public_name eigen.cpp)
- (libraries ctypes ctypes-foreign)
+ (libraries ctypes)
  (c_library_flags
   (:standard -lstdc++)
   )

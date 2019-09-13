@@ -24,7 +24,7 @@ push:
 depext:
 	opam depext -y core async ppx_sexp_conv dune toplevel_expect_test patdiff \
 		lambdasoup sexp_pretty fmt re mdx ctypes-foreign conf-ncurses eigen owl \
-		owl-plplot owl-ode-odepack
+		owl-plplot owl-ode-odepack zarith
 	opam install ocp-pp.1.99.19-beta plplot.5.11.0 zarith graphics
 
 vendor:

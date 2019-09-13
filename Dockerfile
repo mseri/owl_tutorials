@@ -1,4 +1,4 @@
-FROM ocaml/opam2:ubuntu-18.04
+FROM ocaml/opam2:debian-stable
 RUN sudo apt-get update && sudo apt-get -y install python-pygments tzdata
 ENV OPAMYES=1
 WORKDIR /home/opam/src

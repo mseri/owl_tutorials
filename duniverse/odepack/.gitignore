@@ -1,0 +1,7 @@
+#							-*-conf-unix-*-
+.merlin
+*.install
+_build
+*.bak
+*.tar.gz
+TODO.md

@@ -10,7 +10,7 @@ RUN git -C /home/opam/opam-repository pull origin master && opam update -uy
 # install non-OCaml dependencies
 COPY Makefile /home/opam/src/.
 RUN make depext
-RUN opam install dune=1.11.3 ctypes ctypes-foreign
+RUN opam install dune=1.11.3
 
 #install pandoc
 WORKDIR /tmp
@@ -21,6 +21,6 @@ WORKDIR /home/opam/src
 COPY . /home/opam/src/
 RUN sudo chown -R opam /home/opam/src
 # eigen hack
-RUN opam exec -- dune build -p eigen duniverse/eigen/eigen_cpp/libeigen_cpp_stubs.a
+# RUN opam exec -- dune build -p eigen duniverse/eigen/eigen_cpp/libeigen_cpp_stubs.a
 RUN opam exec -- make
 RUN opam exec -- make test

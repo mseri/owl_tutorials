@@ -45,7 +45,8 @@
   ((opamverse
     (((name ocp-pp) (version (1.99.19-beta)))
      ((name plplot) (version (5.11.0))) ((name zarith) (version (1.9.1)))
-     ((name graphics) (version (4.08.1)))))
+     ((name graphics) (version (4.08.1)))
+     ((name eigen) (version (0.1.4))))))
    (duniverse
     (((dir uri) (upstream https://github.com/mirage/ocaml-uri.git)
       (ref ((t v3.0.0) (commit a2d304ad78958931f1a159f7bfeeac69a708972b)))
@@ -171,9 +172,6 @@
       (ref
        ((t duniverse-0.1) (commit 8feae7e02820f656c6c2ebe5a126b20d3eecb76e)))
       (provided_packages (((name seq) (version (base+dune))))))
-     ((dir eigen) (upstream https://github.com/owlbarn/eigen.git)
-      (ref ((t 0.1.3) (commit ce43d80021bedd7c555d77f709e63c7a93231659)))
-      (provided_packages (((name eigen) (version (0.1.3))))))
      ((dir sexplib0) (upstream https://github.com/janestreet/sexplib0.git)
       (ref ((t v0.12.0) (commit 256512b36ab14fa5b50424a6b4c6511cbbdf34eb)))
       (provided_packages (((name sexplib0) (version (v0.12.0))))))

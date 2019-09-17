@@ -47,6 +47,7 @@
      ((name plplot) (version (5.11.0))) ((name zarith) (version (1.9.1)))
      ((name graphics) (version (4.08.1)))
      ((name ctypes) (version (0.15.1+dune)))
+     ((name integers) (version (0.3.0)))
      ((name eigen) (version (0.1.4))))))
    (duniverse
     (((dir uri) (upstream https://github.com/mirage/ocaml-uri.git)
@@ -64,10 +65,6 @@
       (upstream git://github.com/ocaml-ppx/ppx_derivers.git)
       (ref ((t 1.2.1) (commit d6655353f647d33de12d215aaa477ba936febef3)))
       (provided_packages (((name ppx_derivers) (version (1.2.1))))))
-     ((dir integers)
-      (upstream https://github.com/ocamllabs/ocaml-integers.git)
-      (ref ((t 0.3.0) (commit 41846f424b13af552200939228492d29bd06a495)))
-      (provided_packages (((name integers) (version (0.3.0))))))
      ((dir re2) (upstream https://github.com/janestreet/re2.git)
       (ref ((t v0.12.0) (commit 97ff798f381b4f9b8ad75c3a9e7a53ceaaa25827)))
       (provided_packages (((name re2) (version (v0.12.0))))))

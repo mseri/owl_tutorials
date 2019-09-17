@@ -46,6 +46,7 @@
     (((name ocp-pp) (version (1.99.19-beta)))
      ((name plplot) (version (5.11.0))) ((name zarith) (version (1.9.1)))
      ((name graphics) (version (4.08.1)))
+     ((name ctypes) (version (0.15.1+dune)))
      ((name eigen) (version (0.1.4))))))
    (duniverse
     (((dir uri) (upstream https://github.com/mirage/ocaml-uri.git)
@@ -59,9 +60,6 @@
      ((dir patdiff) (upstream https://github.com/janestreet/patdiff.git)
       (ref ((t v0.12.0) (commit a3a32a8eeba0bef305d2f014be9415150bc7b564)))
       (provided_packages (((name patdiff) (version (v0.12.0))))))
-     ((dir ctypes) (upstream https://github.com/avsm/ocaml-ctypes.git)
-      (ref ((t dune-port) (commit 4cadd5a6a4cdf6b0aeac7caf1bb52f2c1120b584)))
-      (provided_packages (((name ctypes) (version (0.15.1+dune))))))
      ((dir ppx_derivers)
       (upstream git://github.com/ocaml-ppx/ppx_derivers.git)
       (ref ((t 1.2.1) (commit d6655353f647d33de12d215aaa477ba936febef3)))

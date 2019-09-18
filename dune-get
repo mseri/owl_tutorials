@@ -466,4 +466,4 @@
       (provided_packages (((name jst-config) (version (v0.12.0))))))
      ((dir async_graphics) (upstream git://github.com/lpw25/async_graphics)
       (ref ((t 0.7.0) (commit c3ef123a58cb21e4bbee174f48727ec518938116)))
-      (provided_packages (((name async_graphics) (version (0.7.0)))))))))))
+      (provided_packages (((name async_graphics) (version (0.7.0))))))))))

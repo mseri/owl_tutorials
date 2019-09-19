@@ -22,5 +22,5 @@ COPY . /home/opam/src/
 RUN sudo chown -R opam /home/opam/src
 # eigen hack
 # RUN opam exec -- dune build -p eigen duniverse/eigen/eigen_cpp/libeigen_cpp_stubs.a
-RUN opam exec -- make
+# RUN opam exec -- make
 # RUN opam exec -- make test

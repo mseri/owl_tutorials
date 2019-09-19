@@ -1,6 +1,11 @@
+(rule
+ (target findlib.conf)
+ (action (write-file %{target} "")))
+
 (alias
  (name   runtest)
  (deps   (:x README.md)
+         (:conf findlib.conf)
          (package mdx)
          (package core)
          (package owl-top)
@@ -12,7 +17,7 @@
          (:y0 ../../examples/code/ndarray/interface_04.mli)
          prelude.ml)
  (action (progn
-           (run ocaml-mdx test --prelude=prelude.ml --direction=to-md %{x})
+           (setenv OCAMLFIND_CONF %{conf} (run ocaml-mdx test --prelude=prelude.ml --direction=to-md %{x}))
            (diff? %{y4} %{y4}.corrected)
            (diff? %{y3} %{y3}.corrected)
            (diff? %{y2} %{y2}.corrected)
@@ -22,6 +27,7 @@
 (alias
  (name   runtest-all)
  (deps   (:x README.md)
+         (:conf findlib.conf)
          (package mdx)
          (package core)
          (package owl-top)
@@ -33,7 +39,7 @@
          (:y0 ../../examples/code/ndarray/interface_04.mli)
          prelude.ml)
  (action (progn
-           (run ocaml-mdx test --prelude=prelude.ml --direction=to-md --non-deterministic %{x})
+           (setenv OCAMLFIND_CONF %{conf} (run ocaml-mdx test --prelude=prelude.ml --direction=to-md --non-deterministic %{x}))
            (diff? %{y4} %{y4}.corrected)
            (diff? %{y3} %{y3}.corrected)
            (diff? %{y2} %{y2}.corrected)

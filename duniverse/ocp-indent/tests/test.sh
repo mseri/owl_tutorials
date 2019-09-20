@@ -14,7 +14,7 @@
 
 shopt -s nullglob
 
-ROOT=$(git rev-parse --show-toplevel)
+ROOT=$(git rev-parse --show-toplevel | tr -d '\r')
 OCP_INDENT=$ROOT/_build/install/default/bin/ocp-indent
 cd $ROOT/tests
 
@@ -40,7 +40,7 @@ while [ $# -gt 0 ]; do
             UPDATE=1
             ;;
         --git-update)
-            if ! git diff --exit-code -- . >/dev/null; then
+            if ! git diff --ignore-cr-at-eol --exit-code -- . >/dev/null; then
                 echo -e "\e[1mWarning:\e[m unstaged changes in tests/"
                 echo "You may want to do 'git checkout -- tests/' or"\
                      "'git add -u -- tests/' first."
@@ -89,6 +89,14 @@ ocp-indent() {
     "$OCP_INDENT" $opts "$1" >$TMP/$(basename $1) 2>&1 || true
 }
 
+ocp-indent-i() {
+    [ $# -eq 1 ]
+    opts=$(cat $1.opts 2>/dev/null || true)
+    "$OCP_INDENT" "-i" $opts "$1" >/dev/null 2>&1 || true
+}
+
+
+
 reffile() {
     [ $# -eq 1 ]
     if [ -e "$1.ref" ]
@@ -99,12 +107,15 @@ reffile() {
 
 PASSING=("")
 FAILING=("")
+INPLACE=("")
 if [ -n "$GIT" ]; then
     PASSING+=($(git ls-files 'passing/*.ml' 'passing/*.ml[iyl]'))
     FAILING+=($(git ls-files 'failing/*.ml' 'failing/*.ml[iyl]'))
+    INPLACE+=($(git ls-files 'inplace/*.ml' 'inplace/*.ml[iyl]'))
 else
     PASSING+=(passing/*.ml passing/*.ml[iyl])
     FAILING+=(failing/*.ml failing/*.ml[iyl])
+    INPLACE+=(inplace/*.ml inplace/*.ml[iyl])
 fi
 CHANGES=()
 
@@ -113,7 +124,7 @@ for f in ${PASSING[@]}; do
     base=$(basename $f)
     name=${base%.*}
     ocp-indent $f
-    if diff -q "$(reffile "$f")" $TMP/$base >/dev/null; then
+    if diff --strip-trailing-cr -q "$(reffile "$f")" $TMP/$base >/dev/null; then
         printf "%-12s\t\e[32m[PASSED]\e[m\n" $name
     else
         printf "%-12s\t\e[31m[FAILED]\e[m \e[41m\e[30m[REGRESSION]\e[m\n" $name
@@ -133,7 +144,7 @@ for f in ${FAILING[@]}; do
     base=$(basename $f)
     name=${base%.*}
     ocp-indent $f
-    if diff -q $(reffile $f) $TMP/$base >/dev/null; then
+    if diff --strip-trailing-cr -q $(reffile $f) $TMP/$base >/dev/null; then
         printf "%-12s\t\e[32m[PASSED]\e[m \e[42m\e[30m[PROGRESSION]\e[m\n" $name
         if [ -n "$UPDATE" ]; then
             $GIT mv -f $f* passing/
@@ -143,15 +154,15 @@ for f in ${FAILING[@]}; do
         printf "%-12s\t\e[33m[FAILED]\e[m \e[43m\e[30m[NEW]\e[m\n" $name
         cp $TMP/$base failing-output/
         if [ -n "$GIT" ]; then $GIT add failing-output/$base; fi
-    elif diff -q $TMP/$base failing-output/$base >/dev/null; then
+    elif diff --strip-trailing-cr -q $TMP/$base failing-output/$base >/dev/null; then
         printf "%-12s\t\e[33m[FAILED]\e[m\n" $name
         if [ -n "$GIT" ] && ! is_file_on_git failing-output/$base; then
             $GIT add failing-output/$base; fi
     else
-        refcount=$(diff -y --suppress-common-lines \
+        refcount=$(diff --strip-trailing-cr -y --suppress-common-lines \
             $(reffile $f) failing-output/$base \
             |wc -l)
-        curcount=$(diff -y --suppress-common-lines \
+        curcount=$(diff --strip-trailing-cr -y --suppress-common-lines \
             $(reffile $f) $TMP/$base \
             |wc -l)
         progress=$((refcount - curcount))
@@ -170,13 +181,38 @@ for f in ${FAILING[@]}; do
     fi
 done
 
+for f in ${INPLACE[@]}; do
+    base=$(basename $f)
+    name=${base%.*}
+    if [ -L $f ]; then
+	dest=$(readlink $f)
+	ocp-indent-i $f
+	if [ -L $f -a $(readlink $f) = $dest ]; then
+	    printf "%-12s\t\e[32m[PASSED]\e[m\n" $name
+	else
+	    printf  "%-12s\t\e[31m[FAILED]\e[m (nothing will be put in CHANGES)\n" $name
+	    rm -f $f
+	    ln -s $dest $f
+	fi
+    else
+	perm=$(stat -c '%a' $f)
+	ocp-indent-i $f
+	if [ $(stat -c '%a' $f) = $perm ]; then
+	    printf "%-12s\t\e[32m[PASSED]\e[m\n" $name
+	else
+	    printf  "%-12s\t\e[31m[FAILED]\e[m (nothing will be put in CHANGES)\n" $name
+	    chmod $perm $f
+	fi
+    fi
+done
+
 if [ -n "$SHOW" ] && [ ${#CHANGES[@]} -gt 0 ]; then
     if [ -z "$SHOWCMD" ]; then
         for f in ${CHANGES[@]}; do
             echo
             printf "\e[1m=== Showing differences in %s ===\e[m\n" $f
             # Custom less buggy version of colordiff -y
-            diff -W 130 -ty  $(reffile $f) $TMP/$(basename $f) \
+            diff --strip-trailing-cr -W 130 -ty  $(reffile $f) $TMP/$(basename $f) \
                 | awk '/^.{64}[^ ].*/ { printf "[31m%s[m\n",$0; next } 1' \
                 || true
         done

@@ -144,7 +144,8 @@ let entering_inline_code_block = ref false;;
 let rec close_comment () = match !comment_stack with
   | Comment :: r -> comment_stack := r; COMMENT
   | CommentCont :: r -> comment_stack := r; COMMENTCONT
-  | (Code | Verbatim) :: r -> comment_stack := r; close_comment ()
+  | (Code | Verbatim) :: r ->
+      comment_stack := r; ignore (close_comment ()); COMMENTCONT
   | [] -> assert false
 ;;
 let in_comment () = match !comment_stack with
@@ -257,6 +258,8 @@ let identchar =
   ['A'-'Z' 'a'-'z' '_' '\192'-'\214' '\216'-'\246' '\248'-'\255' '\'' '0'-'9']
 let symbolchar =
   ['!' '$' '%' '&' '*' '+' '-' '.' '/' ':' '<' '=' '>' '?' '@' '^' '|' '~']
+let bindingopchar =
+  ['$' '&' '*' '+' '-' '/' '<' '=' '>' '@' '^' '|']
 let decimal_literal =
   (['0'-'9'] ['0'-'9' '_']*)
 let hex_literal =
@@ -344,6 +347,19 @@ rule parse_token = parse
   | "'\\" _
     { let l = Lexing.lexeme lexbuf in
       CHAR ( Overflow l )
+    }
+  | "(*$"
+    { entering_inline_code_block := true;
+      comment_stack := Comment :: !comment_stack;
+      rewind lexbuf 1;
+      COMMENT }
+  | '$'
+    { if !entering_inline_code_block then begin
+        entering_inline_code_block := false;
+        comment_stack := Code :: !comment_stack;
+        OCAMLDOC_CODE
+      end
+      else INFIXOP0(Lexing.lexeme lexbuf)
     }
   | "(*"
     {
@@ -485,6 +501,11 @@ rule parse_token = parse
     { INFIXOP4(Lexing.lexeme lexbuf) }
   | ['*' '/' '%'] symbolchar *
     { INFIXOP3(Lexing.lexeme lexbuf) }
+
+  | "let" bindingopchar symbolchar*
+    { LET }
+  | "and" bindingopchar symbolchar*
+    { AND }
 
   | eof { EOF }
   | _

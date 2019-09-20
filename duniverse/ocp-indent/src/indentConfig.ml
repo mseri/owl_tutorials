@@ -80,7 +80,7 @@ let intoption_of_string = function
   | "none" | "None" -> None
   | n ->
       try Some (int_of_string n)
-      with Failure "int_of_string" ->
+      with Failure _ ->
           failwith "intoption_of_string"
 
 let string_of_intoption = function
@@ -408,8 +408,16 @@ let local_default ?(path=Sys.getcwd()) () =
   let conf, syn, dlink =
     try
       let (/) = Filename.concat in
-      let f = (Sys.getenv "HOME") / ".ocp" / "ocp-indent.conf" in
-      if Sys.file_exists f then load ~indent:conf f else conf, [], []
+      let xdg_path = ( match Sys.getenv "XDG_CONFIG_HOME" with
+          | "" -> (Sys.getenv "HOME") / ".config"
+          | exception Not_found -> (Sys.getenv "HOME") / ".config"
+          | x -> x ) / "ocp" / "ocp-indent.conf" in
+      if Sys.file_exists xdg_path
+      then load ~indent:conf xdg_path
+      else let legacy_path = (Sys.getenv "HOME") / ".ocp" / ".ocp-indent.conf" in
+        if  Sys.file_exists legacy_path
+        then load ~indent:conf legacy_path
+        else conf, [], []
     with Not_found -> conf, [], []
   in
   let conf, syn, dlink = match find_conf_file path with

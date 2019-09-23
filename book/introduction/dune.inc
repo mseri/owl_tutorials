@@ -13,6 +13,7 @@
          (:y1 ../../examples/code/introduction/hello.ml)
          (:y0 ../../examples/code/introduction/world.ml)
          prelude.ml)
+ (locks ../../global-lock)
  (action (progn
            (setenv OCAMLFIND_CONF %{conf} (run ocaml-mdx test --prelude=prelude.ml --direction=to-md %{x}))
            (diff? %{y1} %{y1}.corrected)

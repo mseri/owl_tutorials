@@ -16,6 +16,7 @@
          (:y1 ../../examples/code/ndarray/interface_03.mli)
          (:y0 ../../examples/code/ndarray/interface_04.mli)
          prelude.ml)
+ (locks ../../global-lock)
  (action (progn
            (setenv OCAMLFIND_CONF %{conf} (run ocaml-mdx test --prelude=prelude.ml --direction=to-md %{x}))
            (diff? %{y4} %{y4}.corrected)
@@ -38,6 +39,7 @@
          (:y1 ../../examples/code/ndarray/interface_03.mli)
          (:y0 ../../examples/code/ndarray/interface_04.mli)
          prelude.ml)
+ (locks ../../global-lock)
  (action (progn
            (setenv OCAMLFIND_CONF %{conf} (run ocaml-mdx test --prelude=prelude.ml --direction=to-md --non-deterministic %{x}))
            (diff? %{y4} %{y4}.corrected)

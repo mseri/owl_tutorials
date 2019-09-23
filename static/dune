@@ -15,7 +15,6 @@
         images/visualisation/plot_023.png
         js/_functions.js
         js/app.js
-        js/discourse.js
         js/jquery.min.js
         js/modernizr.js
         js/prism.js

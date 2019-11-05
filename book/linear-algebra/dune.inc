@@ -5,15 +5,10 @@
 (alias
  (name   runtest)
  (deps   (:x README.md)
-         (:conf findlib.conf)
-         (package mdx)
-         (package core)
-         (package owl-plplot)
-         (package owl-top)
-         (package ppx_jane)
+         (:y0 ../../examples/code/linear-algebra/example_00.ml)
          prelude.ml)
  (locks ../../global-lock)
  (action (progn
-           (setenv OCAMLFIND_CONF %{conf} (run ocaml-mdx test --prelude=prelude.ml --direction=to-md %{x}))
-
-           (diff? %{x} %{x}.corrected))))
+           (run ocaml-mdx test --prelude=prelude.ml --direction=to-md %{x})
+           (diff? %{x} %{x}.corrected)
+           (diff? %{y0} %{y0}.corrected))))

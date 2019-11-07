@@ -1,12 +1,7 @@
-(rule
- (target findlib.conf)
- (action (write-file %{target} "")))
-
 (alias
  (name   runtest)
  (deps   (:x README.md)
          prelude.ml)
- (locks ../../global-lock)
  (action (progn
            (run ocaml-mdx test --prelude=prelude.ml --direction=to-md %{x})
            (diff? %{x} %{x}.corrected)

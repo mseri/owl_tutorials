@@ -1,4 +1,4 @@
-.PHONY: all clean dep publish promote test test-all docker depext push depext vendor
+.PHONY: all clean dep publish promote test test-all docker depext push vendor compile
 
 all: test
 	@dune build @site
@@ -25,6 +25,12 @@ clean:
 push:
 	git commit -am "editing book ..." && \
 	git push origin `git branch | grep \* | cut -d ' ' -f2`
+
+docker:
+	docker build -t owlbarn/owl_tutorials:latest .
+
+compile:
+	docker run -v /home/liang/code/owl_tutorials:/home/opam/owl_tutorials_local -it owlbarn/owl_tutorials:latest
 
 depext:
 	opam depext -y core async ppx_sexp_conv dune toplevel_expect_test patdiff \

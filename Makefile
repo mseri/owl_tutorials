@@ -21,6 +21,7 @@ promote:
 
 clean:
 	@dune clean
+	docker stop owl_tutorials_buidler && docker rm owl_tutorials_buidler
 
 push:
 	git commit -am "editing book ..." && \
@@ -30,7 +31,10 @@ docker:
 	docker build -t owlbarn/owl_tutorials:latest .
 
 compile:
-	docker run -v /home/liang/code/owl_tutorials:/home/opam/owl_tutorials_local -it owlbarn/owl_tutorials:latest
+	docker run -t -d --name owl_tutorials_buidler owlbarn/owl_tutorials:latest
+	docker cp . owl_tutorials_buidler:/home/opam/owl_tutorials_local
+	docker exec -it owl_tutorials_buidler bash -c 'cd /home/opam/owl_tutorials_local && eval `opam env` && make'
+	docker cp owl_tutorials_buidler:/home/opam/owl_tutorials_local/docs .
 
 depext:
 	opam depext -y core async ppx_sexp_conv dune toplevel_expect_test patdiff \

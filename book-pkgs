@@ -47,7 +47,7 @@ owl
 owl-ode
 owl-ode-odepack
 owl-plplot
-gp
+owl-symbolic
 parsexp
 patdiff
 patience_diff

@@ -2,12 +2,16 @@
  (name runtest)
  (deps
   (:x README.md)
+  (package mdx)
+  (package owl)
+  (package owl-top)
   (:y4 ../../examples/code/ndarray/interface_00.mli)
   (:y3 ../../examples/code/ndarray/interface_01.mli)
   (:y2 ../../examples/code/ndarray/interface_02.mli)
   (:y1 ../../examples/code/ndarray/interface_03.mli)
   (:y0 ../../examples/code/ndarray/interface_04.mli)
   prelude.ml)
+ (locks ../../global-lock)
  (action
   (progn
    (run ocaml-mdx test --prelude=prelude.ml --direction=to-md %{x})
@@ -22,12 +26,16 @@
  (name runtest-all)
  (deps
   (:x README.md)
+  (package mdx)
+  (package owl)
+  (package owl-top)
   (:y4 ../../examples/code/ndarray/interface_00.mli)
   (:y3 ../../examples/code/ndarray/interface_01.mli)
   (:y2 ../../examples/code/ndarray/interface_02.mli)
   (:y1 ../../examples/code/ndarray/interface_03.mli)
   (:y0 ../../examples/code/ndarray/interface_04.mli)
   prelude.ml)
+ (locks ../../global-lock)
  (action
   (progn
    (run ocaml-mdx test --prelude=prelude.ml --direction=to-md

@@ -2,10 +2,14 @@
  (name runtest)
  (deps
   (:x README.md)
+  (package mdx)
+  (package owl)
+  (package owl-top)
   (:y2 ../../examples/code/dataframe/example_00.ml)
   (:y1 ../../examples/code/dataframe/example_01.ml)
   (:y0 ../../examples/code/dataframe/example_02.ml)
   prelude.ml)
+ (locks ../../global-lock)
  (action
   (progn
    (run ocaml-mdx test --prelude=prelude.ml --direction=to-md %{x})

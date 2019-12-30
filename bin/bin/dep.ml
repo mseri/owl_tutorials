@@ -75,6 +75,7 @@ let dune_for_chapter file =
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/%s)
+  (locks ../../global-lock)
   (action  (run otb-build build chapter -o . -repo-root .. %%{x})))|}
     file file file toc_file
 
@@ -83,6 +84,7 @@ let dune_for_pdf () =
   (targets inputs.tex)
   (deps    %%{bin:otb-build}
            ../book/toc.scm)
+  (locks ../../global-lock)
   (action  (run otb-build build inputs -o . -repo-root ..)))
 
 (rule
@@ -90,11 +92,13 @@ let dune_for_pdf () =
   (deps    (alias ../book/latex)
            (:x ../book/book.tex)
            inputs.tex)
+  (locks ../../global-lock)
   (action  (system "pdflatex -interaction=nonstopmode %%{x} -draftmode")))
 
 (rule
   (targets book.ind)
   (deps    (:x book.idx))
+  (locks ../../global-lock)
   (action  (system "makeindex %%{x}")))
 
 (alias (name pdf) (deps book.pdf))
@@ -107,6 +111,7 @@ let dune_for_pdf () =
            book.aux
            book.ind
            book.toc)
+  (locks ../../global-lock)
   (action  (system "pdflatex -interaction=nonstopmode %%{x}")))|}
 
 let read_toc base_dir =
@@ -126,7 +131,8 @@ let frontpage_chapter ?(deps=[]) name =
   (rule
     (targets %s.html)
     (deps    (alias ../book/html) ../book/%s.html ../bin/bin/app.exe %s)
-    (action  (run otb-build build %s -o . -repo-root ..)))|}
+    (locks ../../global-lock)
+  (action  (run otb-build build %s -o . -repo-root ..)))|}
     name name name
     (String.concat " " deps)
     name
@@ -185,11 +191,13 @@ let process_md ~toc book_dir =
 {|(rule
   (targets %s.html)
   (deps    (:md_file %s))
+  (locks ../../global-lock)
   (action  (run otb-convert_md %%{md_file} -t html -o %%{targets})))
 
 (rule
   (targets %s.tex)
   (deps    (:md_file %s))
+  (locks ../../global-lock)
   (action  (run otb-convert_md %%{md_file} -t latex -o %%{targets})))|}
           chapter (chapter / "README.md")
           chapter (chapter / "README.md")

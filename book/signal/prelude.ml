@@ -1,4 +1,4 @@
-#require "owl-top";;
+#require "owl,owl-top";;
 
 open Owl
 open Bigarray

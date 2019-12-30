@@ -59,33 +59,25 @@
   (rule
     (targets faqs.html)
     (deps    (alias ../book/html) ../book/faqs.html ../bin/bin/app.exe )
-    (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build faqs -o . -repo-root ..)))
+      (action  (run otb-build build faqs -o . -repo-root ..)))
 
 (alias (name site) (deps index.html))
   (rule
     (targets index.html)
     (deps    (alias ../book/html) ../book/index.html ../bin/bin/app.exe )
-    (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build index -o . -repo-root ..)))
+      (action  (run otb-build build index -o . -repo-root ..)))
 
 (alias (name site) (deps install.html))
   (rule
     (targets install.html)
     (deps    (alias ../book/html) ../book/install.html ../bin/bin/app.exe )
-    (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build install -o . -repo-root ..)))
+      (action  (run otb-build build install -o . -repo-root ..)))
 
 (alias (name site) (deps toc.html))
   (rule
     (targets toc.html)
     (deps    (alias ../book/html) ../book/toc.html ../bin/bin/app.exe ../book/toc.scm)
-    (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build toc -o . -repo-root ..)))
+      (action  (run otb-build build toc -o . -repo-root ..)))
 
 (alias (name site) (deps aeos.html))
 
@@ -95,9 +87,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps algodiff.html))
 
@@ -107,9 +97,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps architecture.html))
 
@@ -119,9 +107,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps backend.html))
 
@@ -131,9 +117,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps broadcast.html))
 
@@ -143,9 +127,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps case-image-inception.html))
 
@@ -155,9 +137,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps cgraph.html))
 
@@ -167,9 +147,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps constant.html))
 
@@ -179,9 +157,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps convention.html))
 
@@ -191,9 +167,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps dataframe.html))
 
@@ -203,9 +177,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps diffequation.html))
 
@@ -215,9 +187,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps introduction.html))
 
@@ -227,9 +197,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps linear-algebra.html))
 
@@ -239,9 +207,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps maths.html))
 
@@ -251,9 +217,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps matrix.html))
 
@@ -263,9 +227,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps ndarray.html))
 
@@ -275,9 +237,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps neural-network.html))
 
@@ -287,9 +247,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps neural-ode.html))
 
@@ -299,9 +257,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps nlp.html))
 
@@ -311,9 +267,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps optimisation.html))
 
@@ -323,9 +277,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps ppl.html))
 
@@ -335,9 +287,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps prologue.html))
 
@@ -347,9 +297,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps signal.html))
 
@@ -359,9 +307,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps slicing.html))
 
@@ -371,9 +317,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps stats.html))
 
@@ -383,9 +327,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps symbolic.html))
 
@@ -395,9 +337,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps testing.html))
 
@@ -407,9 +347,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps visualisation.html))
 
@@ -419,9 +357,7 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (alias (name site) (deps zoo.html))
 
@@ -431,33 +367,25 @@
            (alias ../book/html)
            ../bin/bin/app.exe
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build chapter -o . -repo-root .. %{x})))
+    (action  (run otb-build build chapter -o . -repo-root .. %{x})))
 
 (rule
   (targets inputs.tex)
   (deps    %{bin:otb-build}
            ../book/toc.scm)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (run otb-build build inputs -o . -repo-root ..)))
+    (action  (run otb-build build inputs -o . -repo-root ..)))
 
 (rule
   (targets book.aux book.idx book.toc)
   (deps    (alias ../book/latex)
            (:x ../book/book.tex)
            inputs.tex)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (system "pdflatex -interaction=nonstopmode %{x} -draftmode")))
+    (action  (system "pdflatex -interaction=nonstopmode %{x} -draftmode")))
 
 (rule
   (targets book.ind)
   (deps    (:x book.idx))
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (system "makeindex %{x}")))
+    (action  (system "makeindex %{x}")))
 
 (alias (name pdf) (deps book.pdf))
 
@@ -469,6 +397,4 @@
            book.aux
            book.ind
            book.toc)
-  (locks ../../global-lock)
-  (locks ../../global-lock)
-  (action  (system "pdflatex -interaction=nonstopmode %{x}")))
+    (action  (system "pdflatex -interaction=nonstopmode %{x}")))

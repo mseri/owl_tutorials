@@ -61,7 +61,8 @@ In the second step, we need to create a `jbuild` file as follows. This file will
 
     (rule
      ((targets (demo.js))
-      (action
+      (locks ../../global-lock)
+  (action
         (run ${bin:js_of_ocaml}
           --noruntime ${lib:js_of_ocaml-compiler:runtime.js}
           --source-map ${path:demo.bc} -o ${@} --pretty
@@ -137,7 +138,8 @@ The code above is simple, just creates a random ndarray, takes a slice, then pri
 
     (rule
      ((targets (demo.js))
-      (action
+      (locks ../../global-lock)
+  (action
         (run ${bin:js_of_ocaml}
           --noruntime ${lib:js_of_ocaml-compiler:runtime.js}
           --source-map ${path:demo.bc} -o ${@} --pretty

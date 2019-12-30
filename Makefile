@@ -55,4 +55,5 @@ depext:
 	opam install ocp-pp.1.99.19-beta plplot.5.11.0 zarith
 
 vendor:
-	duniverse init otb `cat book-pkgs` --pin mdx,https://github.com/Julow/mdx.git,duniverse_mode --pin gp,https://github.com/hennequin-lab/gp.git,master
+	duniverse init otb `cat book-pkgs` --pin owl-base,https://github.com/owlbarn/owl.git,master --pin owl,https://github.com/owlbarn/owl.git,master
+	#mdx,https://github.com/Julow/mdx.git,duniverse_mode

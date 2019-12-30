@@ -6,6 +6,8 @@
         images/algodiff/plot_01.png
         images/asset/liang.jpg
         images/cgraph/owl_cgraph_functor_stack.png
+        images/cgraph/owl_cgraph_mnist_opt.png
+        images/cgraph/owl_cgraph_mnist_raw.png
         images/cgraph/owl_cgraph_opt_0.png
         images/cgraph/owl_cgraph_opt_1.png
         images/cgraph/owl_cgraph_opt_2.png
@@ -47,6 +49,7 @@
         images/visualisation/plot_026.png
         js/_functions.js
         js/app.js
+        js/discourse.js
         js/jquery.min.js
         js/modernizr.js
         js/prism.js

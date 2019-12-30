@@ -1,2 +1,0 @@
---prelude-str "#require \"lwt\""
---prelude-str "toto:let x = \"42\""

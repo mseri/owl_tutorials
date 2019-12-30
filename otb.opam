@@ -9,17 +9,7 @@ bug-reports: "https://github.com/owlbarn/owl_tutorials/issues"
 synopsis: "Owl Tutorial Book sources"
 depends: [
   "ocaml" {>= "4.06.0"}
-  "dune" {>= "1.11.0"}
-  "owl" {>= "0.6.0"}
-  "owl-base" {>= "0.6.0"}
-  "core"
-  "async"
-  "lambdasoup"
-  "re"
-  "mdx"
-  "fmt"
-  "cmdliner"
-  "sexp_pretty"
+  "dune" {>= "2.0.0"}
 ]
 build: ["dune" "build"]
 depexts: [

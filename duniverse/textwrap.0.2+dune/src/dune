@@ -1,5 +1,0 @@
-(library
- (name wrapper)
- (public_name textwrap)
- (libraries str)
- (synopsis "Text wrapping and filling for OCaml"))
